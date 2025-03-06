@@ -1,0 +1,101 @@
+body {
+ font-family: Arial, sans-serif;
+ margin: 0;
+ padding: 0;
+ background-color: #f4f4f4;
+}
+
+header {
+ background-color: #ff6600;
+ color: white;
+ padding: 20px;
+ text-align: center;
+}
+
+.menu, .cart {
+ margin: 20px;
+ padding: 20px;
+ background-color: white;
+ border-radius: 8px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.item {
+ margin-bottom: 20px;
+ padding: 10px;
+ border-bottom: 1px solid #ddd;
+}
+
+.item h3 {
+ margin: 0;
+ color: #333;
+}
+
+.item p {
+ margin: 5px 0;
+ color: #666;
+}
+
+.item .price {
+ font-weight: bold;
+ color: #ff6600;
+}
+
+.item button {
+ background-color: #ff6600;
+ color: white;
+ border: none;
+ padding: 10px 20px;
+ border-radius: 5px;
+ cursor: pointer;
+}
+
+.item button:hover {
+ background-color: #e65c00;
+}
+
+.cart {
+ position: fixed;
+ right: 20px;
+ top: 100px;
+ width: 300px;
+}
+
+.cart h2 {
+ margin-top: 0;
+}
+
+.cart ul {
+ list-style-type: none;
+ padding: 0;
+}
+
+.cart ul li {
+ margin-bottom: 10px;
+ color: #333;
+}
+
+.cart button {
+ background-color: #ff6600;
+ color: white;
+ border: none;
+ padding: 10px 20px;
+ border-radius: 5px;
+ cursor: pointer;
+ width: 100%;
+ margin-top: 10px;
+}
+
+.cart button:hover {
+ background-color: #e65c00;
+}
+
+footer {
+ background-color: #333;
+ color: white;
+ text-align: center;
+ padding: 10px;
+ position: fixed;
+ bottom: 0;
+ width: 100%;
+}
