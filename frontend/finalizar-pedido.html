@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Coxinha Delivery - Finalizar Pedido</title>
+    <link rel="stylesheet" href="css/pedidos.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <img src="imagens/logo dr.coxinha app.png" alt="Logo Dr. Coxinha" class="logo">
+        </div>
+    </header>
+
+    <section class="order-summary">
+        <h2>Resumo do Pedido</h2>
+        <ul id="order-items">
+            <!-- Itens do pedido serão carregados aqui via JavaScript -->
+        </ul>
+        <p>Total: R$ <span id="order-total">0,00</span></p>
+        <p><strong>Observação:</strong> <span id="order-observation"></span></p>
+    </section>
+
+    <section class="customer-data">
+        <h2>Dados do Cliente</h2>
+        <form id="customer-form">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Telefone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="address">Endereço de Entrega:</label>
+            <textarea id="address" name="address" required></textarea>
+
+            <label for="payment">Forma de Pagamento:</label>
+            <select id="payment" name="payment" required>
+                <option value="dinheiro">Dinheiro</option>
+                <option value="cartao">Cartão de Crédito</option>
+                <option value="pix">PIX</option>
+            </select>
+
+            <button type="submit">Confirmar Pedido</button>
+        </form>
+    </section>
+
+    <!-- Scripts -->
+    <script src="js/resumo.js"></script>
+    <script src="js/finalizar-pedido.js"></script>
+</body>
+</html>

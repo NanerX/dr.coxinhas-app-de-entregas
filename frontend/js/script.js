@@ -1,11 +1,19 @@
+// script.js
+
 // Recupera o carrinho, o total e a observação do localStorage ou inicializa como vazio
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let total = parseFloat(localStorage.getItem('total')) || 0;
 let observation = localStorage.getItem('observation') || "";
 
+// Função para salvar o carrinho no localStorage
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('total', total.toFixed(2)); // Salva o total com duas casas decimais
+    localStorage.setItem('observation', observation); // Salva a observação
+}
+
 // Função para adicionar itens ao carrinho
 function addToCart(itemName, itemPrice) {
-    // Verifica se o item já está no carrinho
     const existingItem = cart.find(item => item.name === itemName);
     if (existingItem) {
         existingItem.quantity += 1; // Aumenta a quantidade se o item já existir
@@ -32,7 +40,7 @@ function updateCart() {
             // Nome do item com classe específica
             const itemName = document.createElement("span");
             itemName.textContent = `${item.name}`;
-            itemName.classList.add("item-name"); // Adiciona uma classe ao nome do item
+            itemName.classList.add("item-name");
 
             // Preço do item
             const itemPrice = document.createElement("span");
@@ -71,19 +79,19 @@ function updateCart() {
 // Função para atualizar a quantidade de um item
 function updateQuantity(index, newQuantity) {
     if (newQuantity >= 1) {
-        cart[index].quantity = parseInt(newQuantity, 10); // Atualiza a quantidade
-        updateCart(); // Atualiza a exibição do carrinho
-        saveCart(); // Salva no localStorage
+        cart[index].quantity = parseInt(newQuantity, 10);
+        updateCart();
+        saveCart();
     }
 }
 
 // Função para remover um item do carrinho
 function removeItem(index) {
     if (index >= 0 && index < cart.length) {
-        cart.splice(index, 1); // Remove o item do carrinho
-        updateCart(); // Atualiza a exibição do carrinho
-        updateCartCount(); // Atualiza o contador de itens
-        saveCart(); // Salva no localStorage
+        cart.splice(index, 1);
+        updateCart();
+        updateCartCount();
+        saveCart();
     }
 }
 
@@ -91,29 +99,22 @@ function removeItem(index) {
 function updateCartCount() {
     const cartCount = document.getElementById("cart-count");
     if (cartCount) {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0); // Soma as quantidades
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         cartCount.textContent = totalItems;
     }
-}
-
-// Função para salvar o carrinho e a observação no localStorage
-function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('total', total.toFixed(2));
-    localStorage.setItem('observation', observation); // Salva a observação
 }
 
 // Função para limpar o carrinho
 function clearCart() {
     cart = [];
     total = 0;
-    observation = ""; // Limpa a observação
+    observation = "";
     updateCart();
     updateCartCount();
     saveCart();
     const observationField = document.getElementById("observation");
     if (observationField) {
-        observationField.value = ""; // Limpa o campo de observação
+        observationField.value = "";
     }
 }
 
@@ -128,11 +129,11 @@ document.addEventListener("DOMContentLoaded", () => {
         observationField.value = observation;
         observationField.addEventListener("input", () => {
             observation = observationField.value;
-            saveCart(); // Salva a observação no localStorage
+            saveCart();
         });
     }
 
-    // Adiciona eventos aos botões de adicionar ao carrinho (se estiver na página index.html)
+    // Adiciona eventos aos botões de adicionar ao carrinho
     document.querySelectorAll(".item button").forEach(button => {
         button.addEventListener("click", () => {
             const item = button.parentElement;
@@ -142,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Adiciona evento ao botão de limpar carrinho (se estiver na página carrinho.html)
+    // Adiciona evento ao botão de limpar carrinho
     const clearCartButton = document.getElementById("clear-cart");
     if (clearCartButton) {
         clearCartButton.addEventListener("click", clearCart);
