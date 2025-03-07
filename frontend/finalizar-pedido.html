@@ -20,7 +20,7 @@
             <!-- Itens do pedido serão carregados aqui via JavaScript -->
         </ul>
         <p>Total: R$ <span id="order-total">0,00</span></p>
-        <p><strong>Observação:</strong> <span id="order-observation"></span></p>
+        <p><strong></strong> <span id="order-observation"></span></p>
     </section>
 
     <section class="customer-data">
@@ -41,13 +41,18 @@
                 <option value="cartao">Cartão de Crédito</option>
                 <option value="pix">PIX</option>
             </select>
+            <!-- Campo de observação -->
+            <label for="observation">Observação:</label>
+            <textarea id="observation"></textarea>
 
             <button type="submit">Confirmar Pedido</button>
+</form>
         </form>
     </section>
 
     <!-- Scripts -->
     <script src="js/resumo.js"></script>
     <script src="js/finalizar-pedido.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

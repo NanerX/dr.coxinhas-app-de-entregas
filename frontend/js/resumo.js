@@ -37,7 +37,7 @@ function displayOrderSummary() {
 // Atualiza a observação ao digitar no campo
 const observationField = document.getElementById("observation");
 if (observationField) {
-    observationField.value = observation;
+    observationField.value = observation; // Preenche o campo com a observação salva
     observationField.addEventListener("input", () => {
         observation = observationField.value;
         saveObservation(); // Salva a observação no localStorage
