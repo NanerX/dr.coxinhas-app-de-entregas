@@ -7,6 +7,7 @@ function addToCart(itemName, itemPrice) {
     cart.push({ name: itemName, price: itemPrice });
     total += itemPrice;
     updateCart();
+    updateCartCount(); // Atualiza o contador de itens no carrinho
     saveCart(); // Salva o carrinho no localStorage
 }
 
@@ -23,6 +24,14 @@ function updateCart() {
             cartItems.appendChild(li);
         });
         totalElement.textContent = total.toFixed(2);
+    }
+}
+
+// Função para atualizar o contador de itens no carrinho
+function updateCartCount() {
+    const cartCount = document.getElementById("cart-count");
+    if (cartCount) {
+        cartCount.textContent = cart.length; // Atualiza o número de itens no carrinho
     }
 }
 
@@ -57,6 +66,7 @@ function clearCart() {
     cart = [];
     total = 0;
     updateCart();
+    updateCartCount(); // Atualiza o contador de itens no carrinho
     saveCart(); // Atualiza o localStorage
 }
 
@@ -66,9 +76,10 @@ function saveCart() {
     localStorage.setItem('total', total.toFixed(2));
 }
 
-// Atualiza o carrinho ao carregar a página
+// Atualiza o carrinho e o contador ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
     updateCart();
+    updateCartCount();
 
     // Adiciona eventos aos botões de adicionar ao carrinho (se estiver na página index.html)
     document.querySelectorAll(".item button").forEach(button => {

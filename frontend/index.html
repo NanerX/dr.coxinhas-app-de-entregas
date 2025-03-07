@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Coxinha Delivery</title>
-    <link rel="stylesheet" href="frontend/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <img src="frontend/imagens/logo dr.coxinha app.png" alt="Logo Dr. Coxinha" class="logo">
-            <button class="view-cart-button" onclick="window.location.href='frontend/carrinho.html'">Ver Carrinho</button>
+            <img src="imagens/logo dr.coxinha app.png" alt="Logo Dr. Coxinha" class="logo">
+            <button class="cart-button" onclick="window.location.href='carrinho.html'">
+                <img src="imagens/carrinho.png" alt="Carrinho" class="cart-icon">
+                <span id="cart-count">0</span>
+            </button>
         </div>
     </header>
 
@@ -146,6 +149,6 @@
         Seu navegador não suporta o elemento de áudio.
     </audio>
 
-    <script src="frontend/js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

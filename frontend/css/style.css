@@ -1,10 +1,10 @@
 /* Cores Principais */
 :root {
-    --primary-color: #F76119; /* Laranja */
+    --primary-color: #ff6600; /* Laranja */
     --secondary-color: #333; /* Preto */
     --background-color: #f9f9f9; /* Fundo claro */
     --text-color: #333; /* Cor do texto */
-    --button-hover-color:#F76119 ; /* Laranja mais escuro */
+    --button-hover-color: #e65c00; /* Laranja mais escuro */
 }
 
 /* Estilos Gerais */
@@ -173,20 +173,36 @@ header .logo {
     height: 150px; /* Ajuste o tamanho conforme necessário */
 }
 
-/* Botão de Ver Carrinho */
-.view-cart-button {
-    background-color: white;
+/* Botão do Carrinho */
+.cart-button {
+    background-color: #ff6600;
     color: var(--primary-color);
     border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 50%; /* Botão redondo */
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Tamanho fixo */
+    height: 50px; /* Tamanho fixo */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.view-cart-button:hover {
+.cart-button:hover {
     background-color: var(--button-hover-color);
+    transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
+}
+
+.cart-icon {
+    width: 24px; /* Tamanho do ícone do carrinho */
+    height: 24px;
+}
+
+#cart-count {
+    margin-left: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
     color: white;
 }
 /* Responsividade */
