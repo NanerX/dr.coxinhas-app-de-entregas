@@ -24,9 +24,9 @@ function updateCart() {
             // Nome e preço do item
             li.textContent = `${item.name} - R$ ${item.price.toFixed(2)}`;
 
-            // Botão de remover
+            // Botão de remover com ícone de lixeira
             const removeButton = document.createElement("button");
-            removeButton.textContent = "Remover";
+            removeButton.innerHTML = '<i class="fas fa-trash"></i>'; // Ícone de lixeira do Font Awesome
             removeButton.classList.add("remove-button");
             removeButton.addEventListener("click", () => removeItem(index)); // Remove o item ao clicar
 

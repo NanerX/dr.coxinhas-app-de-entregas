@@ -5,6 +5,8 @@
     --background-color: #f9f9f9; /* Fundo claro */
     --text-color: #333; /* Cor do texto */
     --button-hover-color: #e65c00; /* Laranja mais escuro */
+    --remove-button-color: #ff4d4d; /* Vermelho para o botão de remover */
+    --remove-button-hover-color: #cc0000; /* Vermelho mais escuro */
 }
 
 /* Estilos Gerais */
@@ -127,6 +129,9 @@ header p {
     margin-bottom: 10px;
     color: var(--text-color);
     font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .cart p {
@@ -150,6 +155,26 @@ header p {
 
 .cart button:hover {
     background-color: var(--button-hover-color);
+}
+
+/* Botão de Remover */
+.remove-button {
+    background-color: var(--remove-button-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+    background-color: var(--remove-button-hover-color);
 }
 
 /* Estilos do Header */
@@ -200,13 +225,13 @@ header .logo {
     height: 24px;
 }
 
-
 #cart-count {
     margin-left: 5px;
     font-size: 0.9rem;
     font-weight: bold;
     color: white;
 }
+
 /* Responsividade */
 @media (max-width: 768px) {
     header h1 {
