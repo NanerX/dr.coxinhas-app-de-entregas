@@ -30,7 +30,7 @@ function displayOrderSummary() {
 
         // Exibe o total e a observação
         orderTotal.textContent = total.toFixed(2);
-        orderObservation.textContent = observation || "Nenhuma observação.";
+        orderObservation.textContent = observation || "";
     }
 }
 
