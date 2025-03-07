@@ -162,11 +162,9 @@ header {
 
 .header-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centraliza a logo */
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 10px;
+    padding: 10px;
 }
 
 header .logo {
@@ -186,6 +184,9 @@ header .logo {
     justify-content: center;
     width: 50px; /* Tamanho fixo */
     height: 50px; /* Tamanho fixo */
+    position: fixed; /* Fixa o botão na tela */
+    bottom: 20px; /* Distância do fundo da tela */
+    right: 20px; /* Distância da direita da tela */
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -198,6 +199,7 @@ header .logo {
     width: 24px; /* Tamanho do ícone do carrinho */
     height: 24px;
 }
+
 
 #cart-count {
     margin-left: 5px;
