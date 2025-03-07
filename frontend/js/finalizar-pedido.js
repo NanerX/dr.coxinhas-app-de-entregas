@@ -10,7 +10,7 @@ document.getElementById("customer-form").addEventListener("submit", function (ev
     const address = document.getElementById("address").value;
     const payment = document.getElementById("payment").value;
 
-    // Recupera os dados do carrinho do localStorage
+    // Recupera os dados do carrinho e a observação do localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const total = parseFloat(localStorage.getItem('total')) || 0;
     const observation = localStorage.getItem('observation') || "Nenhuma observação.";

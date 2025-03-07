@@ -1,9 +1,14 @@
 // resumo.js
 
-// Recupera os dados do carrinho do localStorage
+// Recupera os dados do carrinho e a observação do localStorage
 const cart = JSON.parse(localStorage.getItem('cart')) || [];
 const total = parseFloat(localStorage.getItem('total')) || 0;
-const observation = localStorage.getItem('observation') || "Nenhuma observação.";
+let observation = localStorage.getItem('observation') || "";
+
+// Função para salvar a observação no localStorage
+function saveObservation() {
+    localStorage.setItem('observation', observation);
+}
 
 // Função para exibir o resumo do pedido
 function displayOrderSummary() {
@@ -25,8 +30,18 @@ function displayOrderSummary() {
 
         // Exibe o total e a observação
         orderTotal.textContent = total.toFixed(2);
-        orderObservation.textContent = observation;
+        orderObservation.textContent = observation || "Nenhuma observação.";
     }
+}
+
+// Atualiza a observação ao digitar no campo
+const observationField = document.getElementById("observation");
+if (observationField) {
+    observationField.value = observation;
+    observationField.addEventListener("input", () => {
+        observation = observationField.value;
+        saveObservation(); // Salva a observação no localStorage
+    });
 }
 
 // Exibe o resumo do pedido ao carregar a página

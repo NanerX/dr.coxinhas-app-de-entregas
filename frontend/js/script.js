@@ -1,15 +1,13 @@
 // script.js
 
-// Recupera o carrinho, o total e a observação do localStorage ou inicializa como vazio
+// Recupera o carrinho e o total do localStorage ou inicializa como vazio
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let total = parseFloat(localStorage.getItem('total')) || 0;
-let observation = localStorage.getItem('observation') || "";
 
 // Função para salvar o carrinho no localStorage
 function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('total', total.toFixed(2)); // Salva o total com duas casas decimais
-    localStorage.setItem('observation', observation); // Salva a observação
 }
 
 // Função para adicionar itens ao carrinho
@@ -22,7 +20,7 @@ function addToCart(itemName, itemPrice) {
     }
     updateCart();
     updateCartCount();
-    saveCart();
+    saveCart(); // Salva o carrinho e o total
 }
 
 // Função para atualizar a exibição do carrinho
@@ -73,6 +71,7 @@ function updateCart() {
 
         // Exibe o total atualizado
         totalElement.textContent = total.toFixed(2);
+        saveCart(); // Salva o carrinho e o total no localStorage
     }
 }
 
@@ -108,30 +107,15 @@ function updateCartCount() {
 function clearCart() {
     cart = [];
     total = 0;
-    observation = "";
     updateCart();
     updateCartCount();
     saveCart();
-    const observationField = document.getElementById("observation");
-    if (observationField) {
-        observationField.value = "";
-    }
 }
 
 // Atualiza o carrinho e o contador ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
     updateCart();
     updateCartCount();
-
-    // Preenche o campo de observação com o valor salvo
-    const observationField = document.getElementById("observation");
-    if (observationField) {
-        observationField.value = observation;
-        observationField.addEventListener("input", () => {
-            observation = observationField.value;
-            saveCart();
-        });
-    }
 
     // Adiciona eventos aos botões de adicionar ao carrinho
     document.querySelectorAll(".item button").forEach(button => {
