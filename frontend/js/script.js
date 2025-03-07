@@ -1,6 +1,7 @@
-// Recupera o carrinho e o total do localStorage ou inicializa como vazio
+// Recupera o carrinho, o total e a observação do localStorage ou inicializa como vazio
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let total = parseFloat(localStorage.getItem('total')) || 0;
+let observation = localStorage.getItem('observation') || "";
 
 // Função para adicionar itens ao carrinho
 function addToCart(itemName, itemPrice) {
@@ -28,8 +29,14 @@ function updateCart() {
         cart.forEach((item, index) => {
             const li = document.createElement("li");
 
-            // Nome e preço do item
-            li.textContent = `${item.name} - R$ ${item.price.toFixed(2)}`;
+            // Nome do item com classe específica
+            const itemName = document.createElement("span");
+            itemName.textContent = `${item.name}`;
+            itemName.classList.add("item-name"); // Adiciona uma classe ao nome do item
+
+            // Preço do item
+            const itemPrice = document.createElement("span");
+            itemPrice.textContent = ` - R$ ${item.price.toFixed(2)}`;
 
             // Campo de quantidade
             const quantityInput = document.createElement("input");
@@ -46,6 +53,8 @@ function updateCart() {
             removeButton.addEventListener("click", () => removeItem(index));
 
             // Adiciona elementos ao item da lista
+            li.appendChild(itemName);
+            li.appendChild(itemPrice);
             li.appendChild(quantityInput);
             li.appendChild(removeButton);
             cartItems.appendChild(li);
@@ -87,25 +96,41 @@ function updateCartCount() {
     }
 }
 
-// Função para salvar o carrinho no localStorage
+// Função para salvar o carrinho e a observação no localStorage
 function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('total', total.toFixed(2));
+    localStorage.setItem('observation', observation); // Salva a observação
 }
 
 // Função para limpar o carrinho
 function clearCart() {
     cart = [];
     total = 0;
+    observation = ""; // Limpa a observação
     updateCart();
     updateCartCount();
     saveCart();
+    const observationField = document.getElementById("observation");
+    if (observationField) {
+        observationField.value = ""; // Limpa o campo de observação
+    }
 }
 
 // Atualiza o carrinho e o contador ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
     updateCart();
     updateCartCount();
+
+    // Preenche o campo de observação com o valor salvo
+    const observationField = document.getElementById("observation");
+    if (observationField) {
+        observationField.value = observation;
+        observationField.addEventListener("input", () => {
+            observation = observationField.value;
+            saveCart(); // Salva a observação no localStorage
+        });
+    }
 
     // Adiciona eventos aos botões de adicionar ao carrinho (se estiver na página index.html)
     document.querySelectorAll(".item button").forEach(button => {

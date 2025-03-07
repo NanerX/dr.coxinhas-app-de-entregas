@@ -128,7 +128,7 @@ header p {
 .cart ul li {
     margin-bottom: 10px;
     color: var(--text-color);
-    font-size: 0.9rem;
+    font-size: 1rem; /* Aumentei o tamanho da fonte */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -163,10 +163,10 @@ header p {
     color: white; /* Cor do ícone */
     border: none; /* Remove a borda */
     border-radius: 5px; /* Bordas arredondadas */
-    padding: 3px 3px; /* Reduzi o padding para diminuir o botão */
+    padding: 5px 8px; /* Ajustei o padding para um tamanho adequado */
     margin-left: 10px; /* Espaço entre o nome do item e o botão */
     cursor: pointer; /* Mostra o cursor de clique */
-    font-size: 1px; /* Reduzi o tamanho da fonte/ícone */
+    font-size: 14px; /* Tamanho da fonte/ícone */
     display: inline-flex; /* Alinha o ícone e o texto */
     align-items: center; /* Centraliza verticalmente */
     justify-content: center; /* Centraliza horizontalmente */
@@ -176,6 +176,7 @@ header p {
 .remove-button:hover {
     background-color: var(--remove-button-hover-color); /* Cor de fundo ao passar o mouse */
 }
+
 /* Estilos do Header */
 header {
     background-color: var(--primary-color);
@@ -231,15 +232,45 @@ header .logo {
     color: white;
 }
 
+/* Campo de Quantidade */
 .quantity-input {
     width: 50px; /* Largura do campo de quantidade */
     margin-left: 20px; /* Espaço entre o nome do item e o campo */
-    margin-right: 50px; /* Aumentei o espaço entre o campo e o botão de remover */
+    margin-right: 20px; /* Espaço entre o campo e o botão de remover */
     padding: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
     text-align: center;
     font-size: 14px;
+}
+
+/* Estilo para o campo de observação */
+.observation {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.observation label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.observation textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 80px; /* Altura mínima */
+}
+
+.observation textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 102, 0, 0.5); /* Efeito de foco */
 }
 
 /* Responsividade */
@@ -278,7 +309,7 @@ header .logo {
     }
 
     .cart ul li {
-        font-size: 0.8rem;
+        font-size: 0.9rem; /* Ajuste para telas menores */
     }
 
     .cart button {
