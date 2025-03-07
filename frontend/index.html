@@ -8,40 +8,137 @@
 </head>
 <body>
     <header>
-        <h1>Dr. Coxinha Delivery</h1>
-        <p>Faça seu pedido online!</p>
+        <div class="header-content">
+            <img src="imagens/logo dr.coxinha app.png" alt="Logo Dr. Coxinha" class="logo">
+            <button class="view-cart-button" onclick="window.location.href='carrinho.html'">Ver Carrinho</button>
+        </div>
     </header>
 
     <section class="menu">
         <h2>Cardápio</h2>
+    
+        <!-- Salgados no Copo -->
+        <h3>Salgados no Copo</h3>
         <div class="item">
-            <h3>Coxinha</h3>
-            <p>Deliciosa coxinha de frango.</p>
-            <p class="price">R$ 5,00</p>
-            <button>Adicionar ao Carrinho</button>
+            <h4>Copo de coxinha</h4>
+            <p>Porção de 10 uni - R$ 5,00</p>
+            <p>Porção de 21 uni - R$ 10,00</p>
+            <p>Porção de 42 uni - R$ 20,00</p>
+            <button onclick="addToCart('Copo de coxinha (10 uni)', 5.00)">Adicionar 10 uni</button>
+            <button onclick="addToCart('Copo de coxinha (21 uni)', 10.00)">Adicionar 21 uni</button>
+            <button onclick="addToCart('Copo de coxinha (42 uni)', 20.00)">Adicionar 42 uni</button>
         </div>
         <div class="item">
-            <h3>Pastel</h3>
-            <p>Pastel de carne ou queijo.</p>
-            <p class="price">R$ 7,00</p>
-            <button>Adicionar ao Carrinho</button>
+            <h4>Copo de bolinha de queijo e presunto</h4>
+            <p>Porção de 10 uni - R$ 5,00</p>
+            <p>Porção de 21 uni - R$ 10,00</p>
+            <p>Porção de 42 uni - R$ 20,00</p>
+            <button onclick="addToCart('Copo de bolinha de queijo e presunto (10 uni)', 5.00)">Adicionar 10 uni</button>
+            <button onclick="addToCart('Copo de bolinha de queijo e presunto (21 uni)', 10.00)">Adicionar 21 uni</button>
+            <button onclick="addToCart('Copo de bolinha de queijo e presunto (42 uni)', 20.00)">Adicionar 42 uni</button>
         </div>
         <div class="item">
-            <h3>Refrigerante</h3>
-            <p>Lata de refrigerante 350ml.</p>
-            <p class="price">R$ 4,00</p>
-            <button>Adicionar ao Carrinho</button>
+            <h4>Copo de kibe</h4>
+            <p>Porção de 10 uni - R$ 5,00</p>
+            <p>Porção de 21 uni - R$ 10,00</p>
+            <p>Porção de 42 uni - R$ 20,00</p>
+            <button onclick="addToCart('Copo de kibe (10 uni)', 5.00)">Adicionar 10 uni</button>
+            <button onclick="addToCart('Copo de kibe (21 uni)', 10.00)">Adicionar 21 uni</button>
+            <button onclick="addToCart('Copo de kibe (42 uni)', 20.00)">Adicionar 42 uni</button>
         </div>
-    </section>
-
-    <section class="cart">
-        <h2>Carrinho</h2>
-        <ul id="cart-items">
-            <!-- Itens do carrinho serão adicionados aqui via JavaScript -->
-        </ul>
-        <p>Total: R$ <span id="total">0,00</span></p>
-        <button onclick="checkout()">Finalizar Pedido</button>
-        <button onclick="printOrder()">Imprimir Pedido</button>
+        <div class="item">
+            <h4>Copo de bolinho de charque</h4>
+            <p>Porção de 10 uni - R$ 7,50</p>
+            <p>Porção de 21 uni - R$ 15,00</p>
+            <p>Porção de 42 uni - R$ 30,00</p>
+            <button onclick="addToCart('Copo de bolinho de charque (10 uni)', 7.50)">Adicionar 10 uni</button>
+            <button onclick="addToCart('Copo de bolinho de charque (21 uni)', 15.00)">Adicionar 21 uni</button>
+            <button onclick="addToCart('Copo de bolinho de charque (42 uni)', 30.00)">Adicionar 42 uni</button>
+        </div>
+        <div class="item">
+            <h4>Copo de bolinho de aratu</h4>
+            <p>Porção de 10 uni - R$ 7,50</p>
+            <p>Porção de 21 uni - R$ 15,00</p>
+            <p>Porção de 42 uni - R$ 30,00</p>
+            <button onclick="addToCart('Copo de bolinho de aratu (10 uni)', 7.50)">Adicionar 10 uni</button>
+            <button onclick="addToCart('Copo de bolinho de aratu (21 uni)', 15.00)">Adicionar 21 uni</button>
+            <button onclick="addToCart('Copo de bolinho de aratu (42 uni)', 30.00)">Adicionar 42 uni</button>
+        </div>
+        <div class="item">
+            <h4>Copo de bolinho de camarão</h4>
+            <p>Porção de 10 uni - R$ 7,50</p>
+            <p>Porção de 21 uni - R$ 15,00</p>
+            <p>Porção de 42 uni - R$ 30,00</p>
+            <button onclick="addToCart('Copo de bolinho de camarão (10 uni)', 7.50)">Adicionar 10 uni</button>
+            <button onclick="addToCart('Copo de bolinho de camarão (21 uni)', 15.00)">Adicionar 21 uni</button>
+            <button onclick="addToCart('Copo de bolinho de camarão (42 uni)', 30.00)">Adicionar 42 uni</button>
+        </div>
+    
+        <!-- Salgados de Real -->
+        <h3>Salgados de Real</h3>
+        <div class="item">
+            <h4>Coxinha</h4>
+            <p>R$ 1,00</p>
+            <button onclick="addToCart('Coxinha', 1.00)">Adicionar</button>
+        </div>
+        <div class="item">
+            <h4>Croquete de queijo e presunto</h4>
+            <p>R$ 1,00</p>
+            <button onclick="addToCart('Croquete de queijo e presunto', 1.00)">Adicionar</button>
+        </div>
+        <div class="item">
+            <h4>Enroladinho de salsicha</h4>
+            <p>R$ 1,00</p>
+            <button onclick="addToCart('Enroladinho de salsicha', 1.00)">Adicionar</button>
+        </div>
+    
+        <!-- Doces -->
+        <h3>Doces</h3>
+        <div class="item">
+            <h4>Churros recheado de doce de leite</h4>
+            <p>Porção de 10 uni - R$ 5,00</p>
+            <p>Porção de 21 uni - R$ 10,00</p>
+            <button onclick="addToCart('Churros recheado de doce de leite (10 uni)', 5.00)">Adicionar 10 uni</button>
+            <button onclick="addToCart('Churros recheado de doce de leite (21 uni)', 10.00)">Adicionar 21 uni</button>
+        </div>
+    
+        <!-- Bebidas -->
+        <h3>Bebidas</h3>
+        <div class="item">
+            <h4>Refrigerante Guaraná 1L</h4>
+            <p>R$ 3,00</p>
+            <button onclick="addToCart('Refrigerante Guaraná 1L', 3.00)">Adicionar</button>
+        </div>
+        <div class="item">
+            <h4>Guaraná Lata 350ml</h4>
+            <p>R$ 1,00</p>
+            <button onclick="addToCart('Guaraná Lata 350ml', 1.00)">Adicionar</button>
+        </div>
+        <div class="item">
+            <h4>Guaraná Lata 269ml</h4>
+            <p>R$ 1,00</p>
+            <button onclick="addToCart('Guaraná Lata 269ml', 1.00)">Adicionar</button>
+        </div>
+        <div class="item">
+            <h4>Refrigerante Guaraná 200ml</h4>
+            <p>R$ 1,00</p>
+            <button onclick="addToCart('Refrigerante Guaraná 200ml', 1.00)">Adicionar</button>
+        </div>
+        <div class="item">
+            <h4>Refrigerante Pepsi 200ml</h4>
+            <p>R$ 1,00</p>
+            <button onclick="addToCart('Refrigerante Pepsi 200ml', 1.00)">Adicionar</button>
+        </div>
+        <div class="item">
+            <h4>Refrigerante Pepsi 350ml</h4>
+            <p>R$ 1,00</p>
+            <button onclick="addToCart('Refrigerante Pepsi 350ml', 1.00)">Adicionar</button>
+        </div>
+        <div class="item">
+            <h4>Refrigerante Pepsi 1L</h4>
+            <p>R$ 3,00</p>
+            <button onclick="addToCart('Refrigerante Pepsi 1L', 3.00)">Adicionar</button>
+        </div>
     </section>
 
     <audio id="notificationSound">
