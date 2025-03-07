@@ -4,11 +4,16 @@ let total = parseFloat(localStorage.getItem('total')) || 0;
 
 // Função para adicionar itens ao carrinho
 function addToCart(itemName, itemPrice) {
-    cart.push({ name: itemName, price: itemPrice });
-    total += itemPrice;
+    // Verifica se o item já está no carrinho
+    const existingItem = cart.find(item => item.name === itemName);
+    if (existingItem) {
+        existingItem.quantity += 1; // Aumenta a quantidade se o item já existir
+    } else {
+        cart.push({ name: itemName, price: itemPrice, quantity: 1 }); // Adiciona novo item
+    }
     updateCart();
-    updateCartCount(); // Atualiza o contador de itens no carrinho
-    saveCart(); // Salva o carrinho no localStorage
+    updateCartCount();
+    saveCart();
 }
 
 // Função para atualizar a exibição do carrinho
@@ -18,33 +23,58 @@ function updateCart() {
 
     if (cartItems && totalElement) {
         cartItems.innerHTML = "";
+        total = 0; // Reinicia o total para recalcular
+
         cart.forEach((item, index) => {
             const li = document.createElement("li");
 
             // Nome e preço do item
             li.textContent = `${item.name} - R$ ${item.price.toFixed(2)}`;
 
-            // Botão de remover com ícone de lixeira
-            const removeButton = document.createElement("button");
-            removeButton.innerHTML = '<i class="fas fa-trash"></i>'; // Ícone de lixeira do Font Awesome
-            removeButton.classList.add("remove-button");
-            removeButton.addEventListener("click", () => removeItem(index)); // Remove o item ao clicar
+            // Campo de quantidade
+            const quantityInput = document.createElement("input");
+            quantityInput.type = "number";
+            quantityInput.value = item.quantity;
+            quantityInput.min = 1;
+            quantityInput.classList.add("quantity-input");
+            quantityInput.addEventListener("change", () => updateQuantity(index, quantityInput.value));
 
-            li.appendChild(removeButton); // Adiciona o botão ao item
-            cartItems.appendChild(li); // Adiciona o item à lista
+            // Botão de remover
+            const removeButton = document.createElement("button");
+            removeButton.innerHTML = '<i class="fas fa-trash"></i>';
+            removeButton.classList.add("remove-button");
+            removeButton.addEventListener("click", () => removeItem(index));
+
+            // Adiciona elementos ao item da lista
+            li.appendChild(quantityInput);
+            li.appendChild(removeButton);
+            cartItems.appendChild(li);
+
+            // Atualiza o total
+            total += item.price * item.quantity;
         });
+
+        // Exibe o total atualizado
         totalElement.textContent = total.toFixed(2);
+    }
+}
+
+// Função para atualizar a quantidade de um item
+function updateQuantity(index, newQuantity) {
+    if (newQuantity >= 1) {
+        cart[index].quantity = parseInt(newQuantity, 10); // Atualiza a quantidade
+        updateCart(); // Atualiza a exibição do carrinho
+        saveCart(); // Salva no localStorage
     }
 }
 
 // Função para remover um item do carrinho
 function removeItem(index) {
     if (index >= 0 && index < cart.length) {
-        total -= cart[index].price; // Subtrai o preço do item do total
         cart.splice(index, 1); // Remove o item do carrinho
         updateCart(); // Atualiza a exibição do carrinho
         updateCartCount(); // Atualiza o contador de itens
-        saveCart(); // Salva o carrinho no localStorage
+        saveCart(); // Salva no localStorage
     }
 }
 
@@ -52,34 +82,15 @@ function removeItem(index) {
 function updateCartCount() {
     const cartCount = document.getElementById("cart-count");
     if (cartCount) {
-        cartCount.textContent = cart.length; // Atualiza o número de itens no carrinho
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0); // Soma as quantidades
+        cartCount.textContent = totalItems;
     }
 }
 
-// Função para finalizar o pedido
-function checkout() {
-    const notificationSound = document.getElementById("notificationSound");
-    if (notificationSound) {
-        notificationSound.play();
-    }
-    alert(`Pedido finalizado! Total: R$ ${total.toFixed(2)}`);
-    clearCart(); // Limpa o carrinho após finalizar o pedido
-}
-
-// Função para imprimir o comprovante do pedido
-function printOrder() {
-    const printContent = `
-        <h1>Dr. Coxinha</h1>
-        <h2>Comprovante de Pedido</h2>
-        <ul>
-            ${cart.map(item => `<li>${item.name} - R$ ${item.price.toFixed(2)}</li>`).join("")}
-        </ul>
-        <p>Total: R$ ${total.toFixed(2)}</p>
-    `;
-    const printWindow = window.open("", "_blank");
-    printWindow.document.write(printContent);
-    printWindow.document.close();
-    printWindow.print();
+// Função para salvar o carrinho no localStorage
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('total', total.toFixed(2));
 }
 
 // Função para limpar o carrinho
@@ -87,14 +98,8 @@ function clearCart() {
     cart = [];
     total = 0;
     updateCart();
-    updateCartCount(); // Atualiza o contador de itens no carrinho
-    saveCart(); // Atualiza o localStorage
-}
-
-// Função para salvar o carrinho no localStorage
-function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('total', total.toFixed(2));
+    updateCartCount();
+    saveCart();
 }
 
 // Atualiza o carrinho e o contador ao carregar a página

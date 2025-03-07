@@ -159,24 +159,23 @@ header p {
 
 /* Botão de Remover */
 .remove-button {
-    background-color: var(--remove-button-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 3px 6px;
-    margin-left: 1px;
-    cursor: pointer;
-    font-size: 14px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
+    background-color: var(--remove-button-color); /* Cor de fundo vermelha */
+    color: white; /* Cor do ícone */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 3px 3px; /* Reduzi o padding para diminuir o botão */
+    margin-left: 10px; /* Espaço entre o nome do item e o botão */
+    cursor: pointer; /* Mostra o cursor de clique */
+    font-size: 1px; /* Reduzi o tamanho da fonte/ícone */
+    display: inline-flex; /* Alinha o ícone e o texto */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    transition: background-color 0.3s ease; /* Transição suave */
 }
 
 .remove-button:hover {
-    background-color: var(--remove-button-hover-color);
+    background-color: var(--remove-button-hover-color); /* Cor de fundo ao passar o mouse */
 }
-
 /* Estilos do Header */
 header {
     background-color: var(--primary-color);
@@ -230,6 +229,17 @@ header .logo {
     font-size: 0.9rem;
     font-weight: bold;
     color: white;
+}
+
+.quantity-input {
+    width: 50px; /* Largura do campo de quantidade */
+    margin-left: 20px; /* Espaço entre o nome do item e o campo */
+    margin-right: 50px; /* Aumentei o espaço entre o campo e o botão de remover */
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
 }
 
 /* Responsividade */
