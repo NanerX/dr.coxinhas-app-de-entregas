@@ -18,12 +18,33 @@ function updateCart() {
 
     if (cartItems && totalElement) {
         cartItems.innerHTML = "";
-        cart.forEach(item => {
+        cart.forEach((item, index) => {
             const li = document.createElement("li");
+
+            // Nome e preço do item
             li.textContent = `${item.name} - R$ ${item.price.toFixed(2)}`;
-            cartItems.appendChild(li);
+
+            // Botão de remover
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remover";
+            removeButton.classList.add("remove-button");
+            removeButton.addEventListener("click", () => removeItem(index)); // Remove o item ao clicar
+
+            li.appendChild(removeButton); // Adiciona o botão ao item
+            cartItems.appendChild(li); // Adiciona o item à lista
         });
         totalElement.textContent = total.toFixed(2);
+    }
+}
+
+// Função para remover um item do carrinho
+function removeItem(index) {
+    if (index >= 0 && index < cart.length) {
+        total -= cart[index].price; // Subtrai o preço do item do total
+        cart.splice(index, 1); // Remove o item do carrinho
+        updateCart(); // Atualiza a exibição do carrinho
+        updateCartCount(); // Atualiza o contador de itens
+        saveCart(); // Salva o carrinho no localStorage
     }
 }
 
