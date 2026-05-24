@@ -1,2 +1,12 @@
 node_modules/
+.env
 .vercel
+
+# Dados sensíveis — não commitar em produção real
+# (manter no repo para estado inicial do banco)
+# backend/src/database/usuarios.json
+# backend/src/database/fcm-tokens.json
+
+# Firebase service account key
+firebase-service-account*.json
+serviceAccountKey.json

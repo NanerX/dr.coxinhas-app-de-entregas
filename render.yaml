@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: dr-coxinha
+    env: node
+    buildCommand: npm install
+    startCommand: node backend/src/app.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        value: admin123
+      - key: DB_DIR
+        value: /data/database
+      - key: FIREBASE_ADMIN_SDK_JSON
+        sync: false
+    disk:
+      name: dr-coxinha-data
+      mountPath: /data
+      sizeGB: 1

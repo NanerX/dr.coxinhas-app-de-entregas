@@ -1,0 +1,26 @@
+{
+  "loja": {
+    "nome": "Dr. Coxinha",
+    "telefone": "",
+    "endereco": "",
+    "taxaEntrega": 5.00,
+    "taxaEntregaGratis": 0,
+    "tempoEstimadoEntrega": "30-45 min",
+    "tempoEstimadoRetirada": "15-20 min",
+    "pixKey": "",
+    "mensagemDestaque": "Os salgadinhos mais gostosos da cidade! 🥟"
+  },
+  "status": {
+    "modoManual": false,
+    "abertaManualmente": false
+  },
+  "horarios": {
+    "domingo": { "ativo": false, "abertura": "08:00", "fechamento": "20:00" },
+    "segunda": { "ativo": true,  "abertura": "08:00", "fechamento": "22:00" },
+    "terca":   { "ativo": true,  "abertura": "08:00", "fechamento": "22:00" },
+    "quarta":  { "ativo": true,  "abertura": "08:00", "fechamento": "22:00" },
+    "quinta":  { "ativo": true,  "abertura": "08:00", "fechamento": "22:00" },
+    "sexta":   { "ativo": true,  "abertura": "08:00", "fechamento": "22:00" },
+    "sabado":  { "ativo": true,  "abertura": "08:00", "fechamento": "22:00" }
+  }
+}

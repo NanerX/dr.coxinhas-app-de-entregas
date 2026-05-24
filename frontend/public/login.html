@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Coxinha — Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #fff8f3 0%, #ffe0cc 100%);
+      padding: 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      width: 100%; max-width: 380px;
+      box-shadow: 0 12px 40px rgba(255,102,0,0.15);
+      text-align: center;
+    }
+    .logo {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+      border: 3px solid var(--laranja-borda);
+    }
+    .logo-fallback {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      background: var(--laranja-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      margin: 0 auto 1rem;
+      border: 3px solid var(--laranja-borda);
+    }
+    h1 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .sub { font-size: 0.85rem; color: var(--texto-suave); margin-bottom: 2rem; }
+    .erro {
+      background: var(--vermelho-bg);
+      color: var(--vermelho);
+      border-radius: var(--raio-p);
+      padding: 0.65rem 1rem;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    form { text-align: left; }
+    .btn-login {
+      background: var(--laranja);
+      color: #fff;
+      border: none;
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: var(--raio);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 0.5rem;
+      transition: background var(--t);
+      cursor: pointer;
+    }
+    .btn-login:hover { background: var(--laranja-esc); }
+    .btn-login:active { transform: scale(0.98); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="/imagens/logo dr.coxinha app.png" alt="Dr. Coxinha" class="logo"
+         onerror="this.style.display='none'; document.getElementById('logo-fb').style.display='flex'">
+    <div class="logo-fallback hidden" id="logo-fb">🥟</div>
+
+    <h1>Painel Admin</h1>
+    <p class="sub">Dr. Coxinha Delivery</p>
+
+    <div id="erro" class="erro hidden"></div>
+
+    <form id="form-login">
+      <div class="form-group">
+        <label>Usuário</label>
+        <input type="text" id="usuario" autocomplete="username" placeholder="admin" required>
+      </div>
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" id="senha" autocomplete="current-password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-login" id="btn">Entrar</button>
+    </form>
+  </div>
+
+  <script>
+    (async () => {
+      const token = localStorage.getItem('adminToken');
+      if (token) {
+        try {
+          const r = await fetch('/api/auth/verify', { headers: { Authorization: 'Bearer ' + token } });
+          if (r.ok) { window.location.href = '/admin.html'; return; }
+        } catch {}
+        localStorage.removeItem('adminToken');
+      }
+    })();
+
+    document.getElementById('form-login').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = document.getElementById('btn');
+      const erro = document.getElementById('erro');
+      btn.disabled = true;
+      btn.textContent = 'Entrando...';
+      erro.classList.add('hidden');
+
+      try {
+        const r = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            usuario: document.getElementById('usuario').value,
+            senha: document.getElementById('senha').value
+          })
+        });
+        const data = await r.json();
+        if (!r.ok) throw new Error(data.erro || 'Credenciais inválidas');
+
+        localStorage.setItem('adminToken', data.token);
+        localStorage.setItem('adminNome', data.nome);
+        window.location.href = '/admin.html';
+      } catch (err) {
+        erro.textContent = err.message;
+        erro.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = 'Entrar';
+      }
+    });
+  </script>
+</body>
+</html>
